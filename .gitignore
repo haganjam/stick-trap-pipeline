@@ -193,3 +193,8 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 .Rproj.user
+
+.DS_Store
+
+
+
