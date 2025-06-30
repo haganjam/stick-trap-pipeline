@@ -112,8 +112,11 @@ def process_image(path, lower_yellow, upper_yellow):
 
 # Run the pipeline
 
+# don't touch
 reference_dir = "./photos/reference-clean/"
 lower_yellow, upper_yellow = calibrate_yellow_range_from_references(reference_dir)
+
+# modify the path to the image of your choosing
 
 # test 1
 target_image = "./photos/test-batch/image3-colour-scale.jpeg"
