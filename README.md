@@ -29,19 +29,13 @@ stick-trap-pipeline/
 
 ## Requirements
 
-This project includes a preconfigured Python virtual environment named `sticky`.
-
-To activate the environment and install required packages:
+This project includes a `requirements.txt` file to recreate the relevant virtual environment which is called `sticky`.
 
 ```bash
-# Activate the virtual environment
-# On macOS/Linux:
-source sticky/bin/activate
-
-# (Optional) Install dependencies if not already installed
-pip install opencv-python numpy pandas matplotlib
+python -m venv sticky
+source sticky/bin/activate  # or sticky\Scripts\activate on Windows
+pip install -r requirements.txt
 ```
-
 ---
 
 ## How It Works
