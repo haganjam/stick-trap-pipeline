@@ -62,7 +62,7 @@ It writes a `CSV` file with two columns:
 
 ---
 
-## 🧪 Running the Script
+## Running the Script
 
 Make sure your reference and test folders are set correctly inside the script. For example, to use images from the `photos/reference-clean/` folder, target photos from the `photos/test-batch` folder and to make a .csv file with the results called `outputs/test-output.csv`, modify these parts of the script: 
 
@@ -87,7 +87,7 @@ You will see:
 
 ---
 
-## 📊 Output Example
+## Output Example
 
 ```csv
 image,proportion
@@ -98,7 +98,9 @@ image5-colour-scale.jpeg,0.0359
 
 ---
 
-## Tips
+## Usage notes
+
+This is a work-in-progress. We have achieved good performance on a set of test images but this does not guarantee that it will work well on a different set of stick-trap images. Always check the results carefully and it will be useful to validate the approach on a few test images with known approximate proportions before fully trusting the pipeline.
 
 - Use **clean, well-lit yellow reference images** in `reference-clean/`.
 - Ensure all target images are consistently sized and framed.
