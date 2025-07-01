@@ -1,9 +1,10 @@
 
 import cv2
+import os
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-from sklearn.cluster import KMeans
 
 def load_image(path):
     return cv2.imread(str(path))
@@ -107,6 +108,8 @@ def process_image(path, lower_yellow, upper_yellow):
     # Match what was highlighted
     non_yellow_ratio = np.count_nonzero(non_yellow_mask) / non_yellow_mask.size
     print(f"Proportion of cropped yellow region covered by non-yellow content: {non_yellow_ratio:.2%}")
+    
+    return non_yellow_ratio
 
 
 
@@ -116,7 +119,7 @@ def process_image(path, lower_yellow, upper_yellow):
 reference_dir = "./photos/reference-clean/"
 lower_yellow, upper_yellow = calibrate_yellow_range_from_references(reference_dir)
 
-# modify the path to the image of your choosing
+# examples of how the code runs
 
 # test 1
 target_image = "./photos/test-batch/image3-colour-scale.jpeg"
@@ -129,6 +132,45 @@ process_image(target_image, lower_yellow, upper_yellow)
  # test 3
 target_image = "./photos/test-batch/image5-colour-scale.jpeg"
 process_image(target_image, lower_yellow, upper_yellow)
+
+
+# run the pipeline
+
+# set input and output paths
+batch_name = "./photos/test-batch"    # Folder containing input images
+output_path = "./outputs/test-output.csv" # Path to save the output CSV
+
+# acceptable image extensions
+extensions = ('.jpeg', '.jpg', '.png')
+
+# list all image files with valid extensions
+image_files = [f for f in os.listdir(batch_name) if f.lower().endswith(extensions)]
+
+# store results
+results = []
+
+# loop through and process each image
+for image_name in image_files:
+    image_path = os.path.join(batch_name, image_name)
+    
+    # run your custom image processing function
+    proportion = process_image(image_path, lower_yellow, upper_yellow)
+    
+    # append results
+    results.append({
+        'image': image_name,
+        'proportion': proportion
+    })
+
+# convert to DataFrame
+results_df = pd.DataFrame(results)
+
+# display or save
+print(results_df)
+results_df.to_csv(output_path, index=False)
+
+
+
 
 
 
